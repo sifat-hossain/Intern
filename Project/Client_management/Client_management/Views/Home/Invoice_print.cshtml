@@ -1,0 +1,285 @@
+﻿@model IEnumerable<Client_management.Models.tblInvoice>
+
+@{
+    ViewBag.Title = "Invoice_Detail";
+    Layout = null;
+}
+
+<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/StyleSheet.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/BootStrap-3.2.0.css" rel="stylesheet" id="bootstrap-css">
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+<link href="~/Content/BootStrap-3.2.0.css" rel="stylesheet" />
+<script src="~/Scripts/BootStrap-3.2.0.js"></script>
+<script src="~/Scripts/Jquery-1.11.1.min.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/Jquery-3.3.1.min.js"></script>
+@using (Html.BeginForm())
+{
+    <div class="content-wrapper">
+        <section class="invoice">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2 class="page-header"></h2>
+                </div>
+            </div>
+
+            <div>
+                <div>
+                    From
+                    <address>
+                        <strong>Admin, Inc.</strong><br>
+                        795 Folsom Ave, Suite 600<br>
+                        San Francisco, CA 94107<br>
+                        Phone: (804) 123-5432<br>
+                        Email: info@almasaeedstudio.com
+                    </address>
+                </div>
+               
+                <div style="margin-left:600px;margin-right:0">
+                    To
+                    <address>
+                        <strong></strong><br>
+                        795 Folsom Ave, Suite 600<br>
+                        San Francisco, CA 94107<br>
+                        Phone: (555) 539-1037<br>
+                        Email: john.doe@example.com
+                    </address>
+                </div>
+                <!-- /.col -->
+                @*<div class="col-sm-4 invoice-col">
+                        <b>Invoice #007612</b><br>
+                        <br>
+                        <b>Order ID:</b> 4F3S8J<br>
+                        <b>Payment Due:</b> 2/22/2014<br>
+                        <b>Account:</b> 968-34567
+                    </div>*@
+                <!-- /.col -->
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 table-responsive">
+
+                    <table class="table" style="text-align:center">
+                        <tr style="text-align:center">
+                            <th style="text-align:center">
+                                @Html.DisplayName("Invoice Number")
+                            </th>
+                            <th style="text-align:center">
+                                @Html.DisplayName("Client Name")
+                            </th>
+                            <th style="text-align:center">
+                                @Html.DisplayName("Year")
+                            </th>
+                            <th style="text-align:center">
+                                @Html.DisplayName("Month")
+                            </th>
+                            <th style="text-align:center">
+                                @Html.DisplayName("Status")
+                            </th>
+                            <th style="text-align:center">
+                                @Html.DisplayName("Payment Type")
+                            </th>
+                            <th style="text-align:center">
+                                @Html.DisplayName("Due")
+                            </th>
+                            <th style="text-align:center">
+                                @Html.DisplayName("Service Name")
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tbody id="mytable">
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Invoice_no)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tblAdded_service.tblClient_profile.Company_name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Date.Value.Year)
+                                    </td>
+                                    @if (item.Payment_type == 2)
+                                    {
+                                        if (item.Date.Value.Month == 1)
+                                        {
+                                            <td>
+                                                January
+                                            </td>
+                                        }
+                                        if (item.Date.Value.Month == 2)
+                                        {
+                                            <td>
+                                                February
+                                            </td>
+                                        }
+                                        if (item.Date.Value.Month == 3)
+                                        {
+                                            <td>
+                                                March
+                                            </td>
+                                        }
+                                        if (item.Date.Value.Month == 4)
+                                        {
+                                            <td>
+                                                April
+                                            </td>
+                                        }
+                                        if (item.Date.Value.Month == 5)
+                                        {
+                                            <td>
+                                                May
+                                            </td>
+                                        }
+                                        if (item.Date.Value.Month == 6)
+                                        {
+                                            <td>
+                                                June
+                                            </td>
+                                        }
+                                        if (item.Date.Value.Month == 7)
+                                        {
+                                            <td>
+                                                July
+                                            </td>
+                                        }
+                                        if (item.Date.Value.Month == 8)
+                                        {
+                                            <td>
+                                                August
+                                            </td>
+                                        }
+                                        if (item.Date.Value.Month == 9)
+                                        {
+                                            <td>
+                                                September
+                                            </td>
+                                        }
+                                        if (item.Date.Value.Month == 10)
+                                        {
+                                            <td>
+                                                October
+                                            </td>
+                                        }
+                                        if (item.Date.Value.Month == 11)
+                                        {
+                                            <td>
+                                                November
+                                            </td>
+                                        }
+                                        if (item.Date.Value.Month == 12)
+                                        {
+                                            <td>
+                                                December
+                                            </td>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            N/A
+                                        </td>
+                                    }
+
+
+                                    @if (item.Payment_status == 0)
+                                    {
+                                        <td style="background-color:red;text-align:center;color:black">
+                                            Unpaid
+                                        </td>
+                                    }
+                                    @if (item.Payment_status == 1)
+                                    {
+                                        <td style="background-color:green;text-align:center;color:black">
+                                            Paid
+                                        </td>
+                                    }
+
+                                    @if (item.Payment_type == 1)
+                                    {
+                                        <td style="text-align:center">Yearly</td>
+                                    }
+
+                                    @if (item.Payment_type == 2)
+                                    {
+                                        <td style="text-align:center">Monthly</td>
+                                    }
+
+                                    @if (item.Payment_type == 3)
+                                    {
+                                        <td style="text-align:center">Fixed</td>
+                                    }
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Due)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tblAdded_service.tblCompany_services.C_service_name)
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        }
+
+
+                    </table>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+            <div style="margin-left:600px;margin-right:0">
+                <div class="col-md-10">
+                    <p class="lead">Amount Due 2/22/2014</p>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tr>
+                                <th style="width:50%">Subtotal:</th>
+                                <td style="padding-left:70px">$250.30</td>
+                            </tr>
+                            <tr>
+                                <th>Tax (9.3%)</th>
+                                <td style="padding-left:70px">$10.34</td>
+                            </tr>
+                            <tr>
+                                <th>Shipping:</th>
+                                <td style="padding-left:70px">$5.80</td>
+                            </tr>
+                            <tr>
+                                <th>Total:</th>
+                                <td style="padding-left:70px">$265.24</td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+            <!-- this row will not appear when printing -->
+            <div class="row no-print">
+                <div class="col-xs-12">
+
+                    @*<button id="btn" type="submit" class="btn btn-primary pull-right" style="margin-right: 5px;">
+                            <i class="fa fa-download"></i>Download as PDF
+                        </button>*@
+                </div>
+            </div>
+        </section>
+        <!-- /.content -->
+        <div class="clearfix"></div>
+    </div>
+    @*@Html.ActionLink("Export To PDF", "PDF")*@
+
+}
+@*<a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>*@
+@*@Html.ActionLink("Export To PDF", "PDF")*@
+@*@Html.ActionLink("Export To Excel", "Report", new { ReportType = "Excel" })  |
+    @Html.ActionLink("Export To PDF", "Report", new { ReportType = "PDF" }) |
+    @Html.ActionLink("Export To Word", "Report", new { ReportType = "Word" })  |
+    @Html.ActionLink("Export To Image", "Report", new { ReportType = "Image" })  |*@
+
+

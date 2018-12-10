@@ -1,0 +1,8 @@
+<div class="card">
+  <img src="/w3images/team2.jpg" alt="John" class="img">
+  <h1>Advertise</h1>
+  <p class="title">Flat-1, House-1, Road-1, Seector,10, Uttara, Dhaka</p>
+  <p style="font-weight:900;">Rent:40000</p>
+  
+ <p><button>Contact</button></p>
+</div>

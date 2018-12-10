@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f66558a36c814878a9d408f78aba6e2b" Name="Diagram1">
+        <EntityTypeShape EntityType="Client_ManagementModel.tblAdded_service" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Client_ManagementModel.tblClient_profile" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Client_ManagementModel.tblClient_transaction" Width="1.5" PointX="7.5" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Client_ManagementModel.tblCompany_services" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Client_ManagementModel.tblInvoice" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="Client_ManagementModel.FK__Added_ser__Clien__1CF15040" ManuallyRouted="false" />
+        <AssociationConnector Association="Client_ManagementModel.FK__Added_ser__Servi__1DE57479" ManuallyRouted="false" />
+        <AssociationConnector Association="Client_ManagementModel.FK__Invoice__Added_s__21B6055D" ManuallyRouted="false" />
+        <AssociationConnector Association="Client_ManagementModel.FK__Client_tr__Invoi__25869641" ManuallyRouted="false" />
+        <AssociationConnector Association="Client_ManagementModel.FK__Invoice__Payment__22AA2996" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

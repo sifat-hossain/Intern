@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/StyleSheet.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/BootStrap-3.2.0.css" rel="stylesheet" id="bootstrap-css">
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+    <link href="~/Content/BootStrap-3.2.0.css" rel="stylesheet" />
+    <script src="~/Scripts/BootStrap-3.2.0.js"></script>
+    <script src="~/Scripts/Jquery-1.11.1.min.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/Jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                @*@Html.ActionLink("", "#", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+            </div>
+            <div style="float:right;" class="navbar-header">
+               @using (Html.BeginForm("Logout", "Login", FormMethod.Post, new { id = "logout" }))
+               {
+                   <a href="javascript:document.getElementById('logout').submit()">Logout</a>
+               }
+            </div>
+
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav"></ul>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-inverse sidebar" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="~/Home/Home">Home<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Client<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="~/Client/Client_Registration">Client Registration</a></li>
+                            <li><a href="~/Client/Client_list">Client List</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li><a href="~/Service/Service_List">Services<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-cog"></span></a></li>
+
+                    <li><a href="~/Payment/Index">Payment History<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-book"></span></a></li>
+                    <li><a href="#">Marketing Report<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-file"></span></a></li>
+                    @*<li><a href="#">Messages<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-envelope"></span></a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-cog"></span></a>
+                            <ul class="dropdown-menu forAnimate" role="menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">One more separated link</a></li>
+                            </ul>*@
+                    @*</li>*@
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="body">
+        @RenderBody()
+    </div>
+    <div class="container body-content">
+        <div>
+            <footer>
+                <p>&copy; @DateTime.Now.Year CAVEMAN INTERNATIONAL LIMITTED</p>
+            </footer>
+        </div>
+
+
+    </div>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    @RenderSection("Scripts",required:false)
+    @RenderSection("Styles",required:false)
+
+
+    <script src="~/Scripts/jquery.js"></script>
+    <script src="~/Scripts/jQuery.print.js"></script>
+    <script>
+
+        $(function () {
+            $('#print').on('click', function () {
+
+                $.print(".print_div");
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+﻿@model PagedList.IPagedList<Client_management.Models.tblInvoice>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 style="text-align:center">Invoice List for Client</h2>
+
+@using (Html.BeginForm("Index", "Invoice", FormMethod.Get, new { id = "form1" }))
+{
+    <div style="text-align:right">
+        Page Size:@Html.DropDownList("PageSize")
+    </div>
+    <div>
+        <label>Search</label>
+        <input type="text" placeholder="serach..." id="search1" />
+     
+    </div>
+
+
+
+<table class="table" style="text-align:center">
+    <tr style="text-align:center">
+        <th style="text-align:center">
+            @Html.DisplayName("Invoice Number")
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayName("Client Name")
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayName("Year")
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayName("Month")
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayName("Status")
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayName("Payment Type")
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayName("Due")
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayName("Service Name")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tbody id="mytable">
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Invoice_no)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tblAdded_service.tblClient_profile.Company_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date.Value.Year)
+            </td>
+            @if (item.Payment_type == 2)
+        {
+            if (item.Date.Value.Month == 1)
+            {
+                <td>
+                    January
+                </td>
+                }
+                if (item.Date.Value.Month == 2)
+                {
+            <td>
+                February
+            </td>
+                }
+                if (item.Date.Value.Month == 3)
+                {
+        <td>
+            March
+        </td>
+                }
+                if (item.Date.Value.Month == 4)
+                {
+    <td>
+        April
+    </td>
+                }
+                if (item.Date.Value.Month == 5)
+                {
+    <td>
+        May
+    </td>
+                }
+                if (item.Date.Value.Month == 6)
+                {
+    <td>
+        June
+    </td>
+                }
+                if (item.Date.Value.Month == 7)
+                {
+    <td>
+        July
+    </td>
+                }
+                if (item.Date.Value.Month == 8)
+                {
+    <td>
+        August
+    </td>
+                }
+                if (item.Date.Value.Month == 9)
+                {
+    <td>
+        September
+    </td>
+                }
+                if (item.Date.Value.Month == 10)
+                {
+    <td>
+        October
+    </td>
+                }
+                if (item.Date.Value.Month == 11)
+                {
+    <td>
+        November
+    </td>
+                }
+                if (item.Date.Value.Month == 12)
+                {
+    <td>
+        December
+    </td>
+                }
+            }
+            else
+            {
+    <td>
+        N/A
+    </td>
+            }
+
+
+            @if (item.Payment_status == 0)
+        {
+            <td style="background-color:red;text-align:center;color:black">
+                Unpaid
+            </td>
+            }
+            @if (item.Payment_status == 1)
+        {
+            <td style="background-color:green;text-align:center;color:black">
+                Paid
+            </td>
+            }
+
+            @if (item.Payment_type == 1)
+        {
+            <td style="text-align:center">Yearly</td>
+            }
+
+            @if (item.Payment_type == 2)
+        {
+            <td style="text-align:center">Monthly</td>
+            }
+
+            @if (item.Payment_type == 3)
+        {
+            <td style="text-align:center">Fixed</td>
+            }
+            <td>
+                @Html.DisplayFor(modelItem => item.Due)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.tblAdded_service.tblCompany_services.C_service_name)
+            </td>
+            <td>
+                @Html.ActionLink("Payment", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Invoice_Detail","Home", new { id = item.ID },null) |
+                @*  @Html.ActionLink("Delete", "Delete", new { id = item.ID })*@
+            </td>
+        </tr>
+    </tbody>
+    }
+
+</table>
+}
+<div class="body" id='Paging' style="text-align:right">
+    Page: @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    <div class="body">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, pageSize = ViewBag.PageSize }))
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#pageSize").change(function () {
+            alert("abc");
+            $("#form1").submit();
+        });
+    });
+</script>
+
+<script src="~/Scripts/Jquery-3.3.1.min.js">
+
+</script>
+<script>
+    $(document).ready(function () {
+        $("#search1").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+             $("#mytable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+             });
+        });
+    });
+</script>

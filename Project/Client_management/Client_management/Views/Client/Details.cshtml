@@ -1,0 +1,92 @@
+﻿@model Client_management.Models.tblClient_profile
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 style="text-align:center">Details of @Model.Company_name</h2>
+<hr />
+<div>
+
+
+    <dl class="dl-horizontal">
+        <dt>
+            Company Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Logo)
+        </dt>
+
+        <dd>
+            <img src="@Model.Logo" height="150" width="150" />
+        </dd>
+
+        <dt>
+            Company Email
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company_email)
+        </dd>
+
+        <dt>
+            Contact Person Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contact_person_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Designation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Designation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            Phone Number
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cell_1),
+            @Html.DisplayFor(model => model.cell_2),
+            @Html.DisplayFor(model => model.cell_3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

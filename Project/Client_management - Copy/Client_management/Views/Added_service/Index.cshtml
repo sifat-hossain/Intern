@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Client_management.Models.tblAdded_service>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Payable_amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Added_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblClient_profile.Company_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblCompany_services.C_service_name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Payable_amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Added_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblClient_profile.Company_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblCompany_services.C_service_name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

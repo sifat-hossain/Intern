@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Client_ManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblAdded_service">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Client_id" Type="Int32" Nullable="false" />
+    <Property Name="Service_id" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="Payable_amount" Type="Int32" Nullable="false" />
+    <Property Name="Added_date" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="tblClient_profile" Relationship="Self.FK__Added_ser__Clien__1CF15040" FromRole="tblAdded_service" ToRole="tblClient_profile" />
+    <NavigationProperty Name="tblCompany_services" Relationship="Self.FK__Added_ser__Servi__1DE57479" FromRole="tblAdded_service" ToRole="tblCompany_services" />
+    <NavigationProperty Name="tblInvoices" Relationship="Self.FK__Invoice__Added_s__21B6055D" FromRole="tblAdded_service" ToRole="tblInvoice" />
+  </EntityType>
+  <EntityType Name="tblClient_profile">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Company_name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Logo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Company_email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Contact_person_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Designation" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Cell_1" Type="Int32" Nullable="false" />
+    <Property Name="cell_2" Type="Int32" />
+    <Property Name="cell_3" Type="Int32" />
+    <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblAdded_service" Relationship="Self.FK__Added_ser__Clien__1CF15040" FromRole="tblClient_profile" ToRole="tblAdded_service" />
+  </EntityType>
+  <EntityType Name="tblClient_transaction">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Invoice_id" Type="Int32" Nullable="false" />
+    <Property Name="Paid_amount" Type="Int32" Nullable="false" />
+    <Property Name="Paid_date" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="tblInvoice" Relationship="Self.FK__Client_tr__Invoi__25869641" FromRole="tblClient_transaction" ToRole="tblInvoice" />
+  </EntityType>
+  <EntityType Name="tblCompany_services">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="C_service_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Category" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Int32" Nullable="false" />
+    <Property Name="Subscription_fee" Type="Int32" Nullable="false" />
+    <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblAdded_service" Relationship="Self.FK__Added_ser__Servi__1DE57479" FromRole="tblCompany_services" ToRole="tblAdded_service" />
+    <NavigationProperty Name="tblInvoices" Relationship="Self.FK__Invoice__Payment__22AA2996" FromRole="tblCompany_services" ToRole="tblInvoice" />
+  </EntityType>
+  <EntityType Name="tblInvoice">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Invoice_no" Type="Int32" Nullable="false" />
+    <Property Name="Added_service_id" Type="Int32" Nullable="false" />
+    <Property Name="Payment_status" Type="Int32" Nullable="false" />
+    <Property Name="Payment_type" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tblAdded_service" Relationship="Self.FK__Invoice__Added_s__21B6055D" FromRole="tblInvoice" ToRole="tblAdded_service" />
+    <NavigationProperty Name="tblClient_transaction" Relationship="Self.FK__Client_tr__Invoi__25869641" FromRole="tblInvoice" ToRole="tblClient_transaction" />
+    <NavigationProperty Name="tblCompany_services" Relationship="Self.FK__Invoice__Payment__22AA2996" FromRole="tblInvoice" ToRole="tblCompany_services" />
+  </EntityType>
+  <Association Name="FK__Added_ser__Clien__1CF15040">
+    <End Role="tblClient_profile" Type="Self.tblClient_profile" Multiplicity="1" />
+    <End Role="tblAdded_service" Type="Self.tblAdded_service" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblClient_profile">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblAdded_service">
+        <PropertyRef Name="Client_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Added_ser__Servi__1DE57479">
+    <End Role="tblCompany_services" Type="Self.tblCompany_services" Multiplicity="1" />
+    <End Role="tblAdded_service" Type="Self.tblAdded_service" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCompany_services">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblAdded_service">
+        <PropertyRef Name="Service_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Invoice__Added_s__21B6055D">
+    <End Role="tblAdded_service" Type="Self.tblAdded_service" Multiplicity="1" />
+    <End Role="tblInvoice" Type="Self.tblInvoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblAdded_service">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblInvoice">
+        <PropertyRef Name="Added_service_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Client_tr__Invoi__25869641">
+    <End Role="tblInvoice" Type="Self.tblInvoice" Multiplicity="1" />
+    <End Role="tblClient_transaction" Type="Self.tblClient_transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblInvoice">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblClient_transaction">
+        <PropertyRef Name="Invoice_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Invoice__Payment__22AA2996">
+    <End Role="tblCompany_services" Type="Self.tblCompany_services" Multiplicity="1" />
+    <End Role="tblInvoice" Type="Self.tblInvoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCompany_services">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblInvoice">
+        <PropertyRef Name="Payment_type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Client_ManagementEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblAdded_service" EntityType="Self.tblAdded_service" />
+    <EntitySet Name="tblClient_profile" EntityType="Self.tblClient_profile" />
+    <EntitySet Name="tblClient_transaction" EntityType="Self.tblClient_transaction" />
+    <EntitySet Name="tblCompany_services" EntityType="Self.tblCompany_services" />
+    <EntitySet Name="tblInvoices" EntityType="Self.tblInvoice" />
+    <AssociationSet Name="FK__Added_ser__Clien__1CF15040" Association="Self.FK__Added_ser__Clien__1CF15040">
+      <End Role="tblClient_profile" EntitySet="tblClient_profile" />
+      <End Role="tblAdded_service" EntitySet="tblAdded_service" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Added_ser__Servi__1DE57479" Association="Self.FK__Added_ser__Servi__1DE57479">
+      <End Role="tblCompany_services" EntitySet="tblCompany_services" />
+      <End Role="tblAdded_service" EntitySet="tblAdded_service" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Invoice__Added_s__21B6055D" Association="Self.FK__Invoice__Added_s__21B6055D">
+      <End Role="tblAdded_service" EntitySet="tblAdded_service" />
+      <End Role="tblInvoice" EntitySet="tblInvoices" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Client_tr__Invoi__25869641" Association="Self.FK__Client_tr__Invoi__25869641">
+      <End Role="tblInvoice" EntitySet="tblInvoices" />
+      <End Role="tblClient_transaction" EntitySet="tblClient_transaction" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Invoice__Payment__22AA2996" Association="Self.FK__Invoice__Payment__22AA2996">
+      <End Role="tblCompany_services" EntitySet="tblCompany_services" />
+      <End Role="tblInvoice" EntitySet="tblInvoices" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

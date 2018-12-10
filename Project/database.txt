@@ -1,0 +1,67 @@
+use master 
+go
+create database Client_Management
+go
+use Client_Management
+go
+
+
+create table Client_profile
+( 
+ID int identity primary key,
+Company_name varchar(500) not null unique,
+[Password] varchar(20) not null unique,
+Logo image not null,
+Company_email varchar(500) not null unique,
+Contact_person_name varchar(100) not null ,
+Designation varchar(100) not null,
+Email varchar(500) not null unique,
+Cell_1 int not null unique,
+cell_2 int unique,
+cell_3 int unique,
+City varchar(100) not null,
+[Address] varchar(500)
+)
+
+
+create table Company_services
+(
+ID int identity primary key,
+C_service_name varchar(100) not null unique,
+Category int not null unique,
+Price int not null,
+Subscription_fee int not null,
+Details varchar(max)  
+)
+
+
+create table Added_service
+(
+ID int identity primary key,
+Client_id int not null,
+Service_id int not null,
+Quantity int not null,
+Payable_amount int not null,
+foreign key (Client_id) references Client_profile(ID),
+foreign key (Service_id) references Company_Services(ID),
+)
+
+create table Invoice
+(
+ID int identity primary key,
+Invoice_no int identity unique,
+Added_service_id int not null,
+Payment_status int not null,
+Payment_type int not null,
+foreign key (Added_service_id) references Added_service(ID),
+foreign key (Payment_type) references Company_services(ID),
+)
+
+create table Client_transaction
+(
+ID int identity primary key,
+Invoice_id int not null,
+Paid_amount int not null,
+Paid_date date not null,
+foreign key (Invoice_id) references Invoice(ID)
+)

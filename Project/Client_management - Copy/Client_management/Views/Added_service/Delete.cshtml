@@ -1,0 +1,64 @@
+﻿@model Client_management.Models.tblAdded_service
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>tblAdded_service</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Payable_amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Payable_amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Added_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Added_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblClient_profile.Company_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblClient_profile.Company_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblCompany_services.C_service_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblCompany_services.C_service_name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

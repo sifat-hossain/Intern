@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Client_ManagementModelStoreContainer" CdmEntityContainer="Client_ManagementEntities">
+    <EntitySetMapping Name="Added_service">
+      <EntityTypeMapping TypeName="Client_ManagementModel.Added_service">
+        <MappingFragment StoreEntitySet="tblAdded_service">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Client_id" ColumnName="Client_id" />
+          <ScalarProperty Name="Service_id" ColumnName="Service_id" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Payable_amount" ColumnName="Payable_amount" />
+          <ScalarProperty Name="Added_date" ColumnName="Added_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Client_profile">
+      <EntityTypeMapping TypeName="Client_ManagementModel.Client_profile">
+        <MappingFragment StoreEntitySet="tblClient_profile">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Company_name" ColumnName="Company_name" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="Company_email" ColumnName="Company_email" />
+          <ScalarProperty Name="Contact_person_name" ColumnName="Contact_person_name" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Cell_1" ColumnName="Cell_1" />
+          <ScalarProperty Name="cell_2" ColumnName="cell_2" />
+          <ScalarProperty Name="cell_3" ColumnName="cell_3" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Client_transaction">
+      <EntityTypeMapping TypeName="Client_ManagementModel.Client_transaction">
+        <MappingFragment StoreEntitySet="tblClient_transaction">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Invoice_id" ColumnName="Invoice_id" />
+          <ScalarProperty Name="Paid_amount" ColumnName="Paid_amount" />
+          <ScalarProperty Name="Paid_date" ColumnName="Paid_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Company_services">
+      <EntityTypeMapping TypeName="Client_ManagementModel.Company_services">
+        <MappingFragment StoreEntitySet="tblCompany_services">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="C_service_name" ColumnName="C_service_name" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Subscription_fee" ColumnName="Subscription_fee" />
+          <ScalarProperty Name="Details" ColumnName="Details" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Invoices">
+      <EntityTypeMapping TypeName="Client_ManagementModel.Invoice">
+        <MappingFragment StoreEntitySet="tblInvoice">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Invoice_no" ColumnName="Invoice_no" />
+          <ScalarProperty Name="Added_service_id" ColumnName="Added_service_id" />
+          <ScalarProperty Name="Payment_status" ColumnName="Payment_status" />
+          <ScalarProperty Name="Payment_type" ColumnName="Payment_type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

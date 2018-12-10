@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Client_management.Models.tblAdded_service>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 style="text-align:center">Added Service List of Client</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Company Name")
+        </th>
+        <th>
+            @Html.DisplayName("Service Name")
+        </th>
+        <th>
+            @Html.DisplayName("Quantity")
+        </th>
+        <th>
+            @Html.DisplayName("Payable_amount")
+        </th>
+        <th>
+            @Html.DisplayName("Added Date")
+        </th>
+
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblClient_profile.Company_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblCompany_services.C_service_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Payable_amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Added_date)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,99 @@
+﻿@model IEnumerable<Client_management.Models.tblClient_profile>
+
+@{
+    ViewBag.Title = "Client_details";
+}
+
+<h2>Client List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Company_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Logo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Company_email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contact_person_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Designation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cell_1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cell_2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cell_3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Company_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            <img src="@Url.Content("~/Logo/"+item.Logo)" height="100" width="100" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Company_email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contact_person_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Designation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cell_1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cell_2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cell_3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Add Service", "Add_service_for_client", "Client", new { id = item.ID },null)
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Client_management.Models.tblCompany_services>
+
+@{
+    ViewBag.Title = "Service_List";
+}
+
+<h2 style="text-align:center">Service List</h2>
+
+<p>
+    @Html.ActionLink("Create New Service", "Add_Service")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Service Name")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayName("Subscription Fee")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Details)
+        </th>
+        <th> Action</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.C_service_name)
+        </td>
+
+        @if (item.Category == 1)
+          {
+        <td>MonthLy</td>
+          }
+
+        @if (item.Category == 2)
+         {
+        <td>Yearly</td>
+          }
+
+        @if (item.Category == 3)
+          {
+        <td>Fixed</td>
+           }
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Subscription_fee)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Details)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+          
+        </td>
+    </tr>
+}
+
+</table>

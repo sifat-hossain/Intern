@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Client_ManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblAdded_service">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Client_id" Type="int" Nullable="false" />
+    <Property Name="Service_id" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="Payable_amount" Type="int" Nullable="false" />
+    <Property Name="Added_date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblClient_profile">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Company_name" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="Password" Type="varchar(max)" Nullable="false" />
+    <Property Name="Logo" Type="varchar(max)" Nullable="false" />
+    <Property Name="Company_email" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="Contact_person_name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Designation" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="Cell_1" Type="int" Nullable="false" />
+    <Property Name="cell_2" Type="int" />
+    <Property Name="cell_3" Type="int" />
+    <Property Name="City" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Address" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="tblClient_transaction">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Client_id" Type="int" Nullable="false" />
+    <Property Name="Invoice_id" Type="int" Nullable="false" />
+    <Property Name="Paid_amount" Type="int" />
+    <Property Name="Paid_date" Type="datetime" />
+    <Property Name="Payment_type" Type="int" />
+  </EntityType>
+  <EntityType Name="tblCompany_services">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="C_service_name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Category" Type="int" Nullable="false" />
+    <Property Name="Price" Type="int" Nullable="false" />
+    <Property Name="Subscription_fee" Type="int" Nullable="false" />
+    <Property Name="Details" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="tblInvoice">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Invoice_no" Type="int" />
+    <Property Name="Added_service_id" Type="int" />
+    <Property Name="Payment_status" Type="int" />
+    <Property Name="Payment_type" Type="int" />
+    <Property Name="Due" Type="int" />
+    <Property Name="Date" Type="datetime" />
+  </EntityType>
+  <Association Name="FK__Added_ser__Clien__1CF15040">
+    <End Role="tblClient_profile" Type="Self.tblClient_profile" Multiplicity="1" />
+    <End Role="tblAdded_service" Type="Self.tblAdded_service" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblClient_profile">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblAdded_service">
+        <PropertyRef Name="Client_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Added_ser__Servi__1DE57479">
+    <End Role="tblCompany_services" Type="Self.tblCompany_services" Multiplicity="1" />
+    <End Role="tblAdded_service" Type="Self.tblAdded_service" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCompany_services">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblAdded_service">
+        <PropertyRef Name="Service_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Invoice__Added_s__21B6055D">
+    <End Role="tblAdded_service" Type="Self.tblAdded_service" Multiplicity="0..1" />
+    <End Role="tblInvoice" Type="Self.tblInvoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblAdded_service">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblInvoice">
+        <PropertyRef Name="Added_service_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblClient_transaction_tblClient_profile">
+    <End Role="tblClient_profile" Type="Self.tblClient_profile" Multiplicity="1" />
+    <End Role="tblClient_transaction" Type="Self.tblClient_transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblClient_profile">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblClient_transaction">
+        <PropertyRef Name="Client_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Client_ManagementModelStoreContainer">
+    <EntitySet Name="tblAdded_service" EntityType="Self.tblAdded_service" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblClient_profile" EntityType="Self.tblClient_profile" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblClient_transaction" EntityType="Self.tblClient_transaction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCompany_services" EntityType="Self.tblCompany_services" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblInvoice" EntityType="Self.tblInvoice" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Added_ser__Clien__1CF15040" Association="Self.FK__Added_ser__Clien__1CF15040">
+      <End Role="tblClient_profile" EntitySet="tblClient_profile" />
+      <End Role="tblAdded_service" EntitySet="tblAdded_service" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Added_ser__Servi__1DE57479" Association="Self.FK__Added_ser__Servi__1DE57479">
+      <End Role="tblCompany_services" EntitySet="tblCompany_services" />
+      <End Role="tblAdded_service" EntitySet="tblAdded_service" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Invoice__Added_s__21B6055D" Association="Self.FK__Invoice__Added_s__21B6055D">
+      <End Role="tblAdded_service" EntitySet="tblAdded_service" />
+      <End Role="tblInvoice" EntitySet="tblInvoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblClient_transaction_tblClient_profile" Association="Self.FK_tblClient_transaction_tblClient_profile">
+      <End Role="tblClient_profile" EntitySet="tblClient_profile" />
+      <End Role="tblClient_transaction" EntitySet="tblClient_transaction" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

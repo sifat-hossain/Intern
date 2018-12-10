@@ -1,0 +1,51 @@
+﻿@model Client_management.Models.tblClient_transaction
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2 style="text-align:center">Payment</h2>
+<hr />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Client_id, "Client Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            <input type="hidden" value="@ViewBag.Client_id" name="Client_id" />
+            <div class="col-md-10">
+               @Html.Display("Client_Name")
+                @Html.ValidationMessageFor(model => model.Client_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Paid_amount,"Amount", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Paid_amount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Paid_amount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Paid_date,"Date", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("Paid_date", DateTime.Now, new { @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.Paid_date, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+      
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

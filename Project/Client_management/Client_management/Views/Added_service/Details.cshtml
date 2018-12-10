@@ -1,0 +1,54 @@
+﻿@model Client_management.Models.tblAdded_service
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 style="text-align:center">Details About the Service Taken By @Html.DisplayFor(model => model.tblClient_profile.Company_name)</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Company Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblClient_profile.Company_name)
+        </dd>
+        <dt>
+            @Html.DisplayName("Service Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblCompany_services.C_service_name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Payable Amount")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Payable_amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Adde Date")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Added_date)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

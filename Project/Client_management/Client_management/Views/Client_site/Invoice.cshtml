@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Client_management.Models.tblInvoice>
+
+@{
+    ViewBag.Title = "Invoice";
+    Layout = "~/Views/Shared/Client_Layout.cshtml";
+}
+
+<h2>Invoice</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Invoice_no)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Payment_status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Payment_type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Due)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblAdded_service.ID)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Invoice_no)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Payment_status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Payment_type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Due)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblAdded_service.ID)
+        </td>
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>*@
+    </tr>
+}
+
+</table>
